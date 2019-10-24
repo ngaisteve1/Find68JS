@@ -1,0 +1,22 @@
+.row {
+  padding: 10px;
+}
+
+#main {
+  background-color: yellow;
+  max-width: 900px;
+  font-size: 6em;
+}
+
+span {
+  margin: 5px;
+  cursor: pointer;
+}
+
+div#result {
+  font-size: 5em;
+}
+
+button {
+  font-size: 3em;
+}
