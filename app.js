@@ -35,7 +35,7 @@ $(function() {
       document.getElementById("main").appendChild(nodeRow);
     }
 
-    console.log(arr);
+    //console.log(arr);
 
     $("span").click(function() {
       if (this.innerText == elementToFind) {
