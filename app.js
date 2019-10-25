@@ -1,51 +1,54 @@
 $(function() {
-  const arr = [];
-  const totalRows = 4;
-  const totalCols = 15;
-  const element = "8";
+  //Create an array to store all the '8'
+  // const arr = [];
+  var element = "8";
   const elementToFind = "6";
+  const totalRow = 5;
+  const totalCol = 10;
 
-  $("#btnNewGame").click(function() {
-    const randomRow = Math.floor(Math.random() * totalRows);
-    const randomCol = Math.floor(Math.random() * totalCols);
-    console.log(randomRow);
-    console.log(randomCol);
-
-    arr.length = 0;
+  const playGame = () => {
+    // arr.length = 0;
     $("#main").empty();
+    const randomRowNo = Math.floor(Math.random() * totalRow);
+    const randomColNo = Math.floor(Math.random() * totalCol);
 
-    for (let x = 0; x < totalRows; x++) {
-      const divRow = document.createElement("div");
-      divRow.className = "row";
-      debugger;
-      for (let y = 0; y < totalCols; y++) {
-        const divCol = document.createElement("span");
-        if (x == randomRow && y == randomCol) {
-          divCol.innerText = elementToFind;
-          arr.push(elementToFind);
+    for (let x = 0; x < totalRow; x++) {
+      const nodeRow = document.createElement("div"); // <div></div>
+
+      for (let y = 0; y < totalCol; y++) {
+        let textNode;
+
+        const nodeCol = document.createElement("span"); // <span></span>
+
+        if (x == randomRowNo && y == randomColNo) {
+          textNode = document.createTextNode(elementToFind);
+          // arr.push(elementToFind);
         } else {
-          divCol.innerText = element;
-          arr.push(element);
+          textNode = document.createTextNode(element);
+          // arr.push(element);
         }
 
-        debugger;
-        $(divRow).append(divCol);
+        nodeCol.appendChild(textNode); // <span>8</span>
+        nodeRow.appendChild(nodeCol); // <div><span>8</span></div>
       }
-      $("#main").append(divRow);
+
+      document.getElementById("main").appendChild(nodeRow);
     }
 
     console.log(arr);
+
     $("span").click(function() {
-      // if you are using element parameter
-      // then, element.target.textContent
-      console.log($(this).text());
-      if ($(this).text() == elementToFind) {
-        $("#result").text("Great job! You found it");
-        console.log("win");
+      if (this.innerText == elementToFind) {
+        $("#result").text("You found it.");
+        console.log("You found it.");
       } else {
-        $("#result").text("try again");
-        console.log("try again");
+        $("#result").text("Try again.");
+        console.log("Try again.");
       }
     });
+  };
+
+  $("#btnNewGame").click(function() {
+    playGame();
   });
 });
